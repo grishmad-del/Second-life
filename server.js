@@ -526,7 +526,81 @@ async function viaGemini(imageData, prompt) {
     "Gemini failed: " + lastError
   );
 }
+async function viaGeminiChat(prompt) {
+  let lastError = "Unknown Gemini chat error";
 
+  for (const model of GMODELS) {
+    console.log(`Trying Gemini chat model: ${model}`);
+
+    try {
+      const response = await fetch(
+        `${GBASE}/models/${model}:generateContent`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": GKEY
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: "user",
+                parts: [{ text: prompt }]
+              }
+            ],
+            generationConfig: {
+              maxOutputTokens: 1200
+            }
+          })
+        }
+      );
+
+      const raw = await response.text();
+      let data;
+
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        lastError = `${model}: Invalid API response`;
+        continue;
+      }
+
+      if (!response.ok) {
+        lastError = `${model} (${response.status}): ${
+          data?.error?.message || raw.slice(0, 300)
+        }`;
+
+        console.error("Gemini chat error:", lastError);
+
+        if ([400, 401, 403].includes(response.status)) {
+          throw new Error(lastError);
+        }
+
+        continue;
+      }
+
+      const reply = (data.candidates?.[0]?.content?.parts || [])
+        .map(part => part.text || "")
+        .join("\n")
+        .trim();
+
+      if (reply) {
+        return reply;
+      }
+
+      lastError = `${model}: No text returned`;
+    } catch (error) {
+      lastError = error.message;
+      console.error("Gemini chat request failed:", lastError);
+
+      if (/\((400|401|403)\)/.test(error.message)) {
+        throw error;
+      }
+    }
+  }
+
+  throw new Error(`Gemini chat failed: ${lastError}`);
+}
 
 // ---------------------------------------------------------
 // PARSE MODEL JSON
@@ -919,7 +993,50 @@ http
 
       return;
     }
+    if (req.method === "POST" && req.url === "/api/chat") {
+  let body = "";
 
+  req.on("data", chunk => {
+    body += chunk;
+
+    if (body.length > 100_000) {
+      req.destroy();
+    }
+  });
+
+  req.on("end", async () => {
+    try {
+      const parsed = JSON.parse(body);
+      const message = String(parsed.message || "").trim();
+
+      if (!message) {
+        return send(res, 400, {
+          error: "Please enter a message."
+        });
+      }
+
+      let reply;
+
+      if (GKEY) {
+        reply = await viaGeminiChat(message);
+      } else if (KEY) {
+        reply = await viaClaudeChat(message);
+      } else {
+        throw new Error("No API key set");
+      }
+
+      send(res, 200, { reply });
+    } catch (error) {
+      console.error(error.stack || error.message);
+
+      send(res, 502, {
+        error: error.message || "Chat request failed"
+      });
+    }
+  });
+
+  return;
+}
 
     // -----------------------------------------------------
     // STATIC FILES
