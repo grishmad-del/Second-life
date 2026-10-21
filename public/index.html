@@ -4,216 +4,1947 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Second Life: what should happen to this thing next?</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Dela+Gothic+One&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#e8edee;--card:#f6f8f8;--ink:#10222b;--mute:#5b6e76;--line:#c9d4d7;--tag:#ff5b2e;--tagink:#fff;--moss:#2f7a52;--sky:#5fa8d0;--track:#d6e0e3;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a20;--card:#14262e;--ink:#e6eff1;--mute:#94a9b1;--line:#27404a;--tag:#ff7449;--moss:#5fc48d;--sky:#7cc0e6;--track:#1e3640;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0d1a20;--card:#14262e;--ink:#e6eff1;--mute:#94a9b1;--line:#27404a;--tag:#ff7449;--moss:#5fc48d;--sky:#7cc0e6;--track:#1e3640;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Figtree,system-ui,sans-serif}
-h1,h2,h3{font-family:'Bricolage Grotesque',Georgia,sans-serif;margin:0;line-height:1.05;letter-spacing:-.02em}
-.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 60px}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
-.logo{font:800 22px 'Bricolage Grotesque',sans-serif}
-.logo i{font-style:normal;color:var(--tag)}
-h1{font-size:clamp(38px,6.5vw,72px);font-weight:800;max-width:14ch}
-.lead{max-width:46ch;color:var(--mute);margin:14px 0 30px}
-.grid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
-@media(max-width:860px){.grid{grid-template-columns:1fr}}
-.panel{background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:22px}
-.drop{border:2px dashed var(--line);border-radius:16px;min-height:170px;display:grid;place-items:center;text-align:center;cursor:pointer;overflow:hidden;position:relative;color:var(--mute);padding:14px}
-.drop:hover,.drop.on,.drop:focus-visible{border-color:var(--tag);outline:none}
-.drop img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.drop b{display:block;color:var(--ink);font-size:17px}
-label{display:block;font-weight:600;font-size:14px;margin:18px 0 7px}
-input[type=text],select,textarea{width:100%;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;font:inherit}
-input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--sky);outline-offset:1px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:8px 14px;font:500 14px Figtree,sans-serif;cursor:pointer}
-.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-input[type=range]{width:100%;accent-color:var(--tag)}
-.row{display:flex;justify-content:space-between;font-size:14px;color:var(--mute)}
-.go{margin-top:22px;width:100%;border:0;border-radius:14px;background:var(--tag);color:var(--tagink);font:800 18px 'Bricolage Grotesque',sans-serif;padding:16px;cursor:pointer}
-.go:disabled{opacity:.6;cursor:wait}
-.ghost{background:none;border:0;color:var(--mute);text-decoration:underline;cursor:pointer;font:inherit;margin-top:10px;padding:0}
-.empty{min-height:380px;display:grid;place-items:center;text-align:center;color:var(--mute);padding:30px}
-.empty h2{color:var(--ink);font-size:28px;margin-bottom:8px}
-.tag{position:relative;background:var(--tag);color:var(--tagink);border-radius:18px 18px 18px 18px;padding:34px 26px 26px 26px;margin:22px 0 26px;transform:rotate(-1.2deg);clip-path:polygon(0 0,calc(100% - 34px) 0,100% 34px,100% 100%,0 100%)}
-.tag:before{content:"";position:absolute;left:20px;top:14px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px rgba(0,0,0,.25)}
-.tag small{display:block;margin-left:30px;font-weight:600;opacity:.9}
-.tag h2{font-size:clamp(30px,5vw,50px);margin:10px 0 8px}
-.tag p{margin:0;max-width:56ch;opacity:.95}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.stat{background:rgba(0,0,0,.16);border-radius:12px;padding:9px 13px;font-weight:600;font-size:14px}
-.id{display:flex;gap:14px;align-items:center;margin-bottom:18px}
-.id img{width:64px;height:64px;border-radius:12px;object-fit:cover}
-.id h3{font-size:22px}.id span{color:var(--mute);font-size:14px}
-.mix{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:6px 0 22px}
-@media(max-width:560px){.mix{grid-template-columns:repeat(2,1fr)}}
-.mix div{font-size:12px;color:var(--mute)}
-.opt{border:1.5px solid var(--line);border-radius:16px;margin-bottom:12px;background:var(--card);overflow:hidden}
-.opt.top{border-color:var(--tag)}
-.opt>button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:14px 16px;cursor:pointer}
-.opt>button:focus-visible{outline:3px solid var(--sky);outline-offset:-3px}
-.ico{font-size:26px}
-.nm b{font:800 18px 'Bricolage Grotesque',sans-serif}.nm div{font-size:14px;color:var(--mute)}
-.sc{font:800 28px 'Bricolage Grotesque',sans-serif;text-align:right}.sc small{font-size:13px;color:var(--mute)}
-.bar{height:6px;background:var(--track);border-radius:9px;margin:0 16px 14px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--moss);border-radius:9px;transition:width .5s}
-.opt.top .bar i{background:var(--tag)}
-.more{display:none;padding:0 16px 16px;border-top:1px dashed var(--line);font-size:15px}
-.opt.open .more{display:block}
-.m5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
-.m5 div{font-size:12px;color:var(--mute)}
-.m5 i{display:block;height:5px;border-radius:5px;background:var(--track);margin-top:4px;position:relative;overflow:hidden}
-.m5 i:after{content:"";position:absolute;inset:0;width:var(--v);background:var(--sky)}
-.more ol{padding-left:20px;margin:8px 0}
-.note{font-size:13px;color:var(--mute);margin-top:14px}
-.err{background:#ffe1d8;color:#6b1d0a;border-radius:12px;padding:12px 14px;margin-top:14px}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{background:#4a1d10;color:#ffd9cc}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-.spin{display:inline-block;width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:r .8s linear infinite;vertical-align:-3px;margin-right:8px}
-@keyframes r{to{transform:rotate(360deg)}}
-:root{--bg:#bfaeff;--card:#fff;--ink:#16102b;--mute:#4b4170;--line:#16102b;--tag:#ff5a1f;--tagink:#16102b;--sky:#4cc9ff;--track:#ece6ff;--lime:#c8ff3d;--pink:#ff8ad8;--sh:#16102b;--grid:rgba(22,16,43,.11)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150f2b;--card:#231a45;--ink:#f4efff;--mute:#b9aedd;--line:#f4efff;--tag:#ff6b35;--track:#35295e;--sh:#c8ff3d;--grid:rgba(255,255,255,.06)}}
-:root[data-theme="dark"]{--bg:#150f2b;--card:#231a45;--ink:#f4efff;--mute:#b9aedd;--line:#f4efff;--tag:#ff6b35;--track:#35295e;--sh:#c8ff3d;--grid:rgba(255,255,255,.06)}
-body{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px;overflow-x:hidden}
-h1,h2,h3,.logo,.go,.nm b,.sc{font-family:'Dela Gothic One','Arial Black',sans-serif;font-weight:400;letter-spacing:-.01em}
-h1{font-size:clamp(42px,8.5vw,104px);line-height:1;max-width:12ch;margin-bottom:6px}
-h1 mark{background:var(--lime);color:#16102b;padding:0 .14em;border:3px solid #16102b;border-radius:14px;display:inline-block;transform:rotate(-2.5deg);box-shadow:6px 6px 0 var(--sh)}
-.logo{font-size:24px}.lead{color:var(--ink);font-weight:500;font-size:18px;margin:22px 0 28px}
-.mq{overflow:hidden;white-space:nowrap;background:#16102b;color:#c8ff3d;border:3px solid #16102b;transform:rotate(-1deg);margin:0 -24px 40px;font-weight:700}
-.mq div{display:inline-block;padding:13px 0;animation:mq 34s linear infinite}.mq span{padding:0 28px}
-@keyframes mq{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.mq div{animation:none}}
-.panel{border:3px solid var(--line);border-radius:22px;box-shadow:9px 9px 0 var(--sh)}
-.drop{border:3px dashed var(--line);background:var(--track);min-height:190px}
-.drop:hover,.drop.on{background:var(--lime);color:#16102b;border-style:solid}
-input[type=text],select,textarea{border:2.5px solid var(--line);border-radius:12px;background:var(--card)}
-label{font-weight:700}
-.chip{border:2.5px solid var(--line);font-weight:700;box-shadow:3px 3px 0 var(--sh);transition:transform .1s,box-shadow .1s}
-.chip:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--sh)}
-.chip[aria-pressed=true]{background:var(--lime);color:#16102b;border-color:var(--line)}
-#theme{margin-right:3px}
-.go{background:var(--tag);color:#16102b;border:3px solid var(--line);box-shadow:6px 6px 0 var(--sh);font-size:19px;transition:transform .1s,box-shadow .1s}
-.go:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--sh)}.go:active:not(:disabled){transform:translate(6px,6px);box-shadow:0 0 0 var(--sh)}
-.spin{border-color:rgba(22,16,43,.3);border-top-color:#16102b}
-.empty{border-style:solid}.empty h2{font-size:30px}
-.tag{clip-path:none;border:3px solid var(--line);box-shadow:7px 7px 0 var(--sh);color:#16102b;transform:rotate(-1.5deg);padding:38px 26px 26px}
-.tag:before{width:18px;height:18px;border:3px solid #16102b;box-shadow:none;background:var(--card)}
-.tag small{font-weight:700;font-size:15px}.tag h2{font-size:clamp(26px,4.4vw,44px);line-height:1.08;padding-right:100px}
-.stat{background:#fff;color:#16102b;border:2.5px solid #16102b}
-.ring{position:absolute;right:22px;top:20px;width:92px;height:92px;border-radius:50%;background:conic-gradient(#16102b calc(var(--p)*1%),rgba(255,255,255,.6) 0);display:grid;place-items:center;transform:rotate(4deg)}
-.ring:before{content:"";position:absolute;inset:10px;border-radius:50%;background:#fff;border:3px solid #16102b}
-.ring b{position:relative;font:400 26px 'Dela Gothic One',sans-serif;color:#16102b;line-height:1;margin-top:8px}.ring span{position:relative;font-size:11px;font-weight:700;color:#16102b;margin-top:-22px}
-@media(max-width:560px){.tag h2{padding-right:0;margin-top:70px}.ring{top:44px;left:22px;right:auto}}
-.id img{border:3px solid var(--line);border-radius:14px}
-.opt{border:3px solid var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--sh);margin-bottom:16px}
-.opt.top{background:var(--lime);color:#16102b}.opt.top .nm div,.opt.top .sc small,.opt.top .m5 div,.opt.top .more div{color:#3a3260}
-.opt>button{grid-template-columns:54px 1fr auto}
-.ico{width:46px;height:46px;border:2.5px solid #16102b;border-radius:14px;background:var(--pink);display:grid;place-items:center;font-size:24px}
-.opt.top .ico{background:var(--tag)}
-.bar{height:12px;border:2.5px solid var(--line);background:var(--track);border-radius:99px}.bar i{background:#16102b;border-radius:0}.opt.top .bar{background:#fff}.opt.top .bar i{background:var(--tag)}
-.more{border-top:3px dashed var(--line)}
-.m5 i{height:8px;border:2px solid var(--line);background:var(--track)}.m5 i:after{background:var(--tag)}
-.mix input[type=range]{accent-color:var(--tag)}
-.mix{background:var(--track);border:3px solid var(--line);border-radius:16px;padding:14px}
-.err{border:3px solid var(--line)}
+:root{
+  --bg:#bfaeff;
+  --paper:#fffdf7;
+  --paper2:#fff;
+  --ink:#16102b;
+  --mute:#4b4170;
+  --line:#16102b;
+  --orange:#ff5a1f;
+  --lime:#c8ff3d;
+  --pink:#ff8ad8;
+  --blue:#4cc9ff;
+  --yellow:#ffe66d;
+  --track:#ece6ff;
+  --shadow:#16102b;
+  --grid:rgba(22,16,43,.10);
+}
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#150f2b;
+    --paper:#231a45;
+    --paper2:#2b2150;
+    --ink:#f4efff;
+    --mute:#b9aedd;
+    --line:#f4efff;
+    --orange:#ff6b35;
+    --lime:#c8ff3d;
+    --pink:#ff8ad8;
+    --blue:#65d4ff;
+    --yellow:#ffe66d;
+    --track:#35295e;
+    --shadow:#c8ff3d;
+    --grid:rgba(255,255,255,.06);
+  }
+}
+
+:root[data-theme="dark"]{
+  --bg:#150f2b;
+  --paper:#231a45;
+  --paper2:#2b2150;
+  --ink:#f4efff;
+  --mute:#b9aedd;
+  --line:#f4efff;
+  --orange:#ff6b35;
+  --lime:#c8ff3d;
+  --pink:#ff8ad8;
+  --blue:#65d4ff;
+  --yellow:#ffe66d;
+  --track:#35295e;
+  --shadow:#c8ff3d;
+  --grid:rgba(255,255,255,.06);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-padding-top:env(safe-area-inset-top,0px);
+}
+
+body{
+  margin:0;
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:32px 32px;
+  color:var(--ink);
+  font:400 16px/1.5 Figtree,system-ui,sans-serif;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  background-image:
+    radial-gradient(rgba(22,16,43,.25) .7px,transparent .7px);
+  background-size:7px 7px;
+  mix-blend-mode:multiply;
+}
+
+h1,h2,h3,.logo,.go,.nm b,.sc{
+  font-family:'Dela Gothic One','Arial Black',sans-serif;
+  font-weight:400;
+  letter-spacing:-.01em;
+}
+
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding:28px 20px 70px;
+}
+
+/* ---------------- HEADER ---------------- */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:42px;
+  position:relative;
+}
+
+.logo{
+  font-size:24px;
+  transform:rotate(-2deg);
+  display:inline-block;
+}
+
+.logo i{
+  font-style:normal;
+  color:var(--orange);
+}
+
+.logo:after{
+  content:"";
+  display:block;
+  height:4px;
+  width:82px;
+  background:var(--lime);
+  border:2px solid var(--line);
+  transform:rotate(2deg);
+  margin-top:2px;
+}
+
+#theme{
+  margin-right:3px;
+}
+
+/* ---------------- HERO ---------------- */
+
+h1{
+  font-size:clamp(42px,8.5vw,104px);
+  line-height:1;
+  max-width:12ch;
+  margin:0 0 8px;
+}
+
+h1 mark{
+  background:var(--lime);
+  color:#16102b;
+  padding:0 .14em;
+  border:3px solid #16102b;
+  border-radius:14px;
+  display:inline-block;
+  transform:rotate(-2.5deg);
+  box-shadow:6px 6px 0 var(--shadow);
+}
+
+.lead{
+  max-width:650px;
+  color:var(--ink);
+  font-weight:500;
+  font-size:18px;
+  margin:22px 0 32px;
+}
+
+/* little handwritten note */
+.lead:after{
+  content:"✦ less bin, more possibilities";
+  display:block;
+  width:max-content;
+  font:600 21px/1 'Caveat',cursive;
+  color:var(--orange);
+  transform:rotate(-3deg);
+  margin-top:13px;
+}
+
+/* ---------------- MARQUEE ---------------- */
+
+.mq{
+  overflow:hidden;
+  white-space:nowrap;
+  background:#16102b;
+  color:var(--lime);
+  border:3px solid #16102b;
+  transform:rotate(-1deg);
+  margin:0 -24px 45px;
+  font-weight:700;
+  position:relative;
+}
+
+.mq div{
+  display:inline-block;
+  padding:13px 0;
+  animation:mq 34s linear infinite;
+}
+
+.mq span{
+  padding:0 28px;
+}
+
+@keyframes mq{
+  to{transform:translateX(-50%)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mq div{animation:none}
+}
+
+/* ---------------- MAIN LAYOUT ---------------- */
+
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,420px) minmax(0,1fr);
+  gap:34px;
+  align-items:start;
+}
+
+@media(max-width:860px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ---------------- PAPER PANELS ---------------- */
+
+.panel{
+  background:var(--paper);
+  border:3px solid var(--line);
+  border-radius:5px;
+  padding:22px;
+  box-shadow:9px 9px 0 var(--shadow);
+  position:relative;
+}
+
+/* tiny imperfect paper corner */
+.panel:after{
+  content:"";
+  position:absolute;
+  right:-3px;
+  bottom:-3px;
+  width:28px;
+  height:28px;
+  background:var(--bg);
+  clip-path:polygon(100% 0,100% 100%,0 100%);
+  border-left:3px solid var(--line);
+  border-top:3px solid var(--line);
+}
+
+/* left panel sits slightly crooked */
+.grid>.panel{
+  transform:rotate(-.7deg);
+}
+
+/* right result panel should remain mostly straight */
+#out>.panel{
+  transform:rotate(.45deg);
+}
+
+/* ---------------- UPLOAD SCRAP ---------------- */
+
+.drop{
+  border:3px dashed var(--line);
+  background:var(--track);
+  border-radius:3px;
+  min-height:205px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  cursor:pointer;
+  overflow:hidden;
+  position:relative;
+  color:var(--mute);
+  padding:14px;
+  transform:rotate(.7deg);
+  transition:transform .15s,background .15s;
+}
+
+.drop:before{
+  content:"";
+  position:absolute;
+  width:82px;
+  height:24px;
+  background:rgba(255,230,109,.88);
+  border:2px solid rgba(22,16,43,.18);
+  top:-7px;
+  left:50%;
+  transform:translateX(-50%) rotate(-4deg);
+  z-index:3;
+}
+
+.drop:hover,
+.drop.on{
+  background:var(--lime);
+  color:#16102b;
+  border-style:solid;
+  transform:rotate(-.8deg) scale(1.01);
+}
+
+.drop b{
+  display:block;
+  color:var(--ink);
+  font-size:18px;
+  margin-bottom:4px;
+}
+
+.drop img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border:0;
+}
+
+/* ---------------- FORM ---------------- */
+
+label{
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin:19px 0 7px;
+}
+
+input[type=text],
+select,
+textarea{
+  width:100%;
+  background:var(--paper2);
+  color:var(--ink);
+  border:2.5px solid var(--line);
+  border-radius:3px;
+  padding:11px 13px;
+  font:inherit;
+  box-shadow:3px 3px 0 rgba(22,16,43,.15);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible{
+  outline:3px solid var(--blue);
+  outline-offset:2px;
+}
+
+/* ---------------- CHIPS ---------------- */
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.chip{
+  border:2.5px solid var(--line);
+  background:var(--paper2);
+  color:var(--ink);
+  border-radius:4px;
+  padding:8px 14px;
+  font:700 14px Figtree,sans-serif;
+  cursor:pointer;
+  box-shadow:3px 3px 0 var(--shadow);
+  transition:transform .1s,box-shadow .1s;
+}
+
+.chip:nth-child(2n){
+  transform:rotate(1deg);
+}
+
+.chip:nth-child(3n){
+  transform:rotate(-1.5deg);
+}
+
+.chip:hover{
+  transform:translate(-1px,-2px) rotate(-1deg);
+}
+
+.chip:active{
+  transform:translate(3px,3px);
+  box-shadow:0 0 0 var(--shadow);
+}
+
+.chip[aria-pressed=true]{
+  background:var(--lime);
+  color:#16102b;
+  border-color:var(--line);
+}
+
+/* ---------------- RANGE ---------------- */
+
+input[type=range]{
+  width:100%;
+  accent-color:var(--orange);
+}
+
+/* ---------------- MAIN BUTTON ---------------- */
+
+.go{
+  margin-top:23px;
+  width:100%;
+  border:3px solid var(--line);
+  border-radius:4px;
+  background:var(--orange);
+  color:#16102b;
+  box-shadow:6px 6px 0 var(--shadow);
+  font-size:19px;
+  padding:16px;
+  cursor:pointer;
+  transition:transform .1s,box-shadow .1s;
+}
+
+.go:hover:not(:disabled){
+  transform:translate(-2px,-2px) rotate(-.5deg);
+  box-shadow:8px 8px 0 var(--shadow);
+}
+
+.go:active:not(:disabled){
+  transform:translate(6px,6px);
+  box-shadow:0 0 0 var(--shadow);
+}
+
+.go:disabled{
+  opacity:.6;
+  cursor:wait;
+}
+
+.ghost{
+  background:none;
+  border:0;
+  color:var(--mute);
+  text-decoration:underline;
+  cursor:pointer;
+  font:600 14px Figtree,sans-serif;
+  margin-top:13px;
+  padding:0;
+}
+
+/* ---------------- EMPTY STATE ---------------- */
+
+.empty{
+  min-height:380px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--mute);
+  padding:30px;
+  background:
+    linear-gradient(135deg,transparent 10px,var(--paper) 10px);
+}
+
+.empty h2{
+  color:var(--ink);
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+/* handwritten annotation */
+.empty h2:after{
+  content:" ← give it another shot!";
+  display:block;
+  color:var(--orange);
+  font:600 22px/1 'Caveat',cursive;
+  transform:rotate(-2deg);
+  margin-top:12px;
+}
+
+/* ---------------- BEST RESULT ---------------- */
+
+.tag{
+  position:relative;
+  background:var(--lime);
+  color:#16102b;
+  border:3px solid var(--line);
+  border-radius:3px;
+  box-shadow:7px 7px 0 var(--shadow);
+  margin:25px 0 30px;
+  padding:38px 26px 26px;
+  transform:rotate(-1.5deg);
+  overflow:hidden;
+}
+
+/* torn-ish top strip */
+.tag:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:9px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(22,16,43,.16) 0,
+      rgba(22,16,43,.16) 5px,
+      transparent 5px,
+      transparent 10px
+    );
+}
+
+/* pin */
+.tag:before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:16px;
+  width:18px;
+  height:18px;
+  border:3px solid #16102b;
+  border-radius:50%;
+  background:var(--paper2);
+  box-shadow:2px 2px 0 rgba(22,16,43,.3);
+}
+
+.tag small{
+  display:block;
+  margin-left:30px;
+  font-weight:700;
+  font-size:15px;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+
+.tag h2{
+  font-size:clamp(26px,4.4vw,44px);
+  line-height:1.08;
+  padding-right:100px;
+  margin:10px 0 8px;
+}
+
+.tag p{
+  margin:0;
+  max-width:56ch;
+}
+
+/* little hand-written "BEST" */
+.tag small:after{
+  content:" ★";
+  font-family:'Caveat',cursive;
+  font-size:20px;
+}
+
+/* ---------------- SCORE RING ---------------- */
+
+.ring{
+  position:absolute;
+  right:22px;
+  top:27px;
+  width:92px;
+  height:92px;
+  border-radius:50%;
+  background:conic-gradient(
+    #16102b calc(var(--p)*1%),
+    rgba(255,255,255,.65) 0
+  );
+  display:grid;
+  place-items:center;
+  transform:rotate(4deg);
+}
+
+.ring:before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius:50%;
+  background:#fff;
+  border:3px solid #16102b;
+}
+
+.ring b{
+  position:relative;
+  font:400 26px 'Dela Gothic One',sans-serif;
+  color:#16102b;
+  line-height:1;
+  margin-top:8px;
+}
+
+.ring span{
+  position:relative;
+  font-size:11px;
+  font-weight:700;
+  color:#16102b;
+  margin-top:-22px;
+}
+
+/* ---------------- STATS ---------------- */
+
+.stats{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.stat{
+  background:#fff;
+  color:#16102b;
+  border:2.5px solid #16102b;
+  border-radius:3px;
+  padding:8px 12px;
+  font-weight:700;
+  font-size:13px;
+  box-shadow:3px 3px 0 rgba(22,16,43,.25);
+}
+
+.stat:nth-child(2){
+  transform:rotate(1deg);
+}
+
+/* ---------------- SLIDER MIX ---------------- */
+
+.mix{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px;
+  margin:8px 0 25px;
+  background:var(--track);
+  border:3px solid var(--line);
+  border-radius:4px;
+  padding:14px;
+  transform:rotate(.5deg);
+}
+
+@media(max-width:560px){
+  .mix{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+.mix div{
+  font-size:12px;
+  color:var(--mute);
+}
+
+.mix input[type=range]{
+  accent-color:var(--orange);
+}
+
+/* ---------------- RESULT SCRAPS ---------------- */
+
+.opt{
+  border:3px solid var(--line);
+  border-radius:3px;
+  margin-bottom:17px;
+  background:var(--paper);
+  overflow:hidden;
+  box-shadow:5px 5px 0 var(--shadow);
+  position:relative;
+}
+
+/* each scrap has a different tiny rotation */
+.opt:nth-of-type(1){
+  transform:rotate(.5deg);
+}
+
+.opt:nth-of-type(2){
+  transform:rotate(-.7deg);
+}
+
+.opt:nth-of-type(3){
+  transform:rotate(.35deg);
+}
+
+.opt:nth-of-type(4){
+  transform:rotate(-.4deg);
+}
+
+.opt:nth-of-type(5){
+  transform:rotate(.7deg);
+}
+
+/* different paper colors */
+.opt:nth-of-type(1){
+  background:#fffdf7;
+}
+
+.opt:nth-of-type(2){
+  background:#fff2fb;
+}
+
+.opt:nth-of-type(3){
+  background:#f0f9ff;
+}
+
+.opt:nth-of-type(4){
+  background:#fff9df;
+}
+
+.opt:nth-of-type(5){
+  background:#f5f3ff;
+}
+
+/* best result */
+.opt.top{
+  background:var(--lime);
+  color:#16102b;
+  border-color:var(--line);
+}
+
+/* little tape pieces */
+.opt:before{
+  content:"";
+  position:absolute;
+  width:58px;
+  height:18px;
+  top:-9px;
+  left:26px;
+  background:rgba(255,230,109,.8);
+  border:2px solid rgba(22,16,43,.12);
+  transform:rotate(-4deg);
+  z-index:2;
+}
+
+.opt:nth-of-type(2):before{
+  background:rgba(255,138,216,.72);
+  transform:rotate(3deg);
+}
+
+.opt:nth-of-type(3):before{
+  background:rgba(76,201,255,.65);
+}
+
+.opt:nth-of-type(4):before{
+  background:rgba(255,230,109,.8);
+}
+
+.opt:nth-of-type(5):before{
+  background:rgba(255,255,255,.75);
+}
+
+.opt>button{
+  all:unset;
+  box-sizing:border-box;
+  width:100%;
+  display:grid;
+  grid-template-columns:54px 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:20px 16px 14px;
+  cursor:pointer;
+}
+
+.opt>button:focus-visible{
+  outline:3px solid var(--blue);
+  outline-offset:-3px;
+}
+
+.ico{
+  width:46px;
+  height:46px;
+  border:2.5px solid #16102b;
+  border-radius:5px;
+  background:var(--pink);
+  display:grid;
+  place-items:center;
+  font-size:24px;
+  transform:rotate(-3deg);
+}
+
+.opt:nth-of-type(2) .ico{
+  background:var(--blue);
+  transform:rotate(2deg);
+}
+
+.opt:nth-of-type(3) .ico{
+  background:var(--yellow);
+}
+
+.opt:nth-of-type(4) .ico{
+  background:var(--pink);
+}
+
+.opt:nth-of-type(5) .ico{
+  background:#fff;
+}
+
+.opt.top .ico{
+  background:var(--orange);
+}
+
+.nm b{
+  font-size:18px;
+}
+
+.nm div{
+  font-size:14px;
+  color:var(--mute);
+  margin-top:2px;
+}
+
+.opt.top .nm div,
+.opt.top .sc small,
+.opt.top .m5 div,
+.opt.top .more div{
+  color:#3a3260;
+}
+
+.sc{
+  font-size:28px;
+  text-align:right;
+}
+
+.sc small{
+  font-size:13px;
+  color:var(--mute);
+}
+
+/* ---------------- SCORE BAR ---------------- */
+
+.bar{
+  height:12px;
+  border:2.5px solid var(--line);
+  background:var(--track);
+  border-radius:99px;
+  margin:0 16px 14px;
+  overflow:hidden;
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  background:#16102b;
+  border-radius:0;
+  transition:width .5s;
+}
+
+.opt.top .bar{
+  background:#fff;
+}
+
+.opt.top .bar i{
+  background:var(--orange);
+}
+
+/* ---------------- EXPANDED INFO ---------------- */
+
+.more{
+  display:none;
+  padding:0 16px 18px;
+  border-top:3px dashed var(--line);
+  font-size:15px;
+}
+
+.opt.open .more{
+  display:block;
+}
+
+.more ol{
+  padding-left:20px;
+  margin:8px 0;
+}
+
+.more li{
+  padding-left:3px;
+  margin-bottom:4px;
+}
+
+.m5{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  margin:15px 0;
+}
+
+.m5 div{
+  font-size:12px;
+  color:var(--mute);
+}
+
+.m5 i{
+  display:block;
+  height:8px;
+  border:2px solid var(--line);
+  background:var(--track);
+  margin-top:4px;
+  position:relative;
+  overflow:hidden;
+}
+
+.m5 i:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:var(--v);
+  background:var(--orange);
+}
+
+/* ---------------- IDENTITY ---------------- */
+
+.id{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin-bottom:18px;
+  position:relative;
+}
+
+.id img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border:3px solid var(--line);
+  border-radius:2px;
+  transform:rotate(-3deg);
+  box-shadow:4px 4px 0 var(--shadow);
+}
+
+.id h3{
+  font-size:22px;
+}
+
+.id span{
+  color:var(--mute);
+  font-size:14px;
+}
+
+/* ---------------- NOTES ---------------- */
+
+.note{
+  font-size:13px;
+  color:var(--mute);
+  margin-top:14px;
+}
+
+#out>.panel>.note:last-child{
+  font-family:'Caveat',cursive;
+  font-size:18px;
+  transform:rotate(-1deg);
+  color:var(--orange);
+}
+
+/* ---------------- ERROR ---------------- */
+
+.err{
+  background:#ffe1d8;
+  color:#6b1d0a;
+  border:3px solid var(--line);
+  border-radius:3px;
+  padding:12px 14px;
+  margin-top:14px;
+  box-shadow:4px 4px 0 var(--shadow);
+}
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .err{
+    background:#4a1d10;
+    color:#ffd9cc;
+  }
+}
+
+/* ---------------- LOADING ---------------- */
+
+.spin{
+  display:inline-block;
+  width:18px;
+  height:18px;
+  border:3px solid rgba(22,16,43,.3);
+  border-top-color:#16102b;
+  border-radius:50%;
+  animation:r .8s linear infinite;
+  vertical-align:-3px;
+  margin-right:8px;
+}
+
+@keyframes r{
+  to{transform:rotate(360deg)}
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media(max-width:560px){
+
+  .wrap{
+    padding:22px 15px 55px;
+  }
+
+  header{
+    margin-bottom:32px;
+  }
+
+  h1{
+    font-size:clamp(40px,13vw,70px);
+  }
+
+  .lead{
+    font-size:16px;
+  }
+
+  .grid>.panel,
+  #out>.panel{
+    transform:none;
+  }
+
+  .tag{
+    transform:rotate(-1deg);
+  }
+
+  .tag h2{
+    padding-right:0;
+    margin-top:70px;
+  }
+
+  .ring{
+    top:44px;
+    left:22px;
+    right:auto;
+  }
+
+  .m5{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .opt:nth-of-type(n){
+    transform:rotate(0deg);
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{
+    transition:none!important;
+    animation:none!important;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
-<header><div class="logo">second<i>life</i></div><button class="chip" id="theme" aria-label="Switch light or dark theme">Theme</button></header>
+
+<header>
+  <div class="logo">second<i>life</i></div>
+  <button class="chip" id="theme" aria-label="Switch light or dark theme">Theme</button>
+</header>
+
 <h1>Before it hits the bin, ask <mark>what’s next.</mark></h1>
-<p class="lead">Snap the item, tell us what you can spare, and get every repair, reuse, resale, donation and recycling route ranked for you.</p>
+
+<p class="lead">
+  Snap the item, tell us what you can spare, and get every repair, reuse,
+  resale, donation and recycling route ranked for you.
+</p>
+
 
 <div class="grid">
+
 <section class="panel" aria-label="Describe your item">
-<div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload a photo of the item"><div id="dtxt"><b>Add a photo of the item</b>Tap to choose, or drop an image here</div></div>
-<input type="file" id="file" accept="image/*" hidden>
-<label for="name">What is it? (optional)</label>
-<input type="text" id="name" placeholder="e.g. wobbly wooden chair, cracked phone">
-<label for="why">Why are you getting rid of it?</label>
-<select id="why"><option>It is broken or damaged</option><option>I no longer need it</option><option>It is outdated or worn out</option><option>I am moving or decluttering</option></select>
-<label>DIY skill</label>
-<div class="chips" id="skill" role="group" aria-label="DIY skill"><button class="chip" aria-pressed="false">None</button><button class="chip" aria-pressed="true">Some</button><button class="chip" aria-pressed="false">Handy</button></div>
-<label for="bud">Repair budget: <span id="budv">₹500</span></label>
-<input type="range" id="bud" min="0" max="5000" step="100" value="500">
-<label>What matters most?</label>
-<div class="chips" id="prio" role="group" aria-label="Priority"><button class="chip" data-p="money" aria-pressed="false">Save money</button><button class="chip" data-p="waste" aria-pressed="true">Cut waste</button><button class="chip" data-p="use" aria-pressed="false">Most useful</button><button class="chip" data-p="easy" aria-pressed="false">Least effort</button></div>
-<button class="go" id="go">Find its second life</button>
-<button class="ghost" id="demo">Try it with a sample item</button>
-<div id="err"></div>
+
+  <div class="drop" id="drop" tabindex="0" role="button"
+       aria-label="Upload a photo of the item">
+
+    <div id="dtxt">
+      <b>Add a photo of the item</b>
+      Tap to choose, or drop an image here
+    </div>
+
+  </div>
+
+  <input type="file" id="file" accept="image/*" hidden>
+
+  <label for="name">What is it? (optional)</label>
+
+  <input
+    type="text"
+    id="name"
+    placeholder="e.g. wobbly wooden chair, cracked phone"
+  >
+
+  <label for="why">Why are you getting rid of it?</label>
+
+  <select id="why">
+    <option>It is broken or damaged</option>
+    <option>I no longer need it</option>
+    <option>It is outdated or worn out</option>
+    <option>I am moving or decluttering</option>
+  </select>
+
+  <label>DIY skill</label>
+
+  <div class="chips" id="skill" role="group" aria-label="DIY skill">
+    <button class="chip" aria-pressed="false">None</button>
+    <button class="chip" aria-pressed="true">Some</button>
+    <button class="chip" aria-pressed="false">Handy</button>
+  </div>
+
+  <label for="bud">
+    Repair budget: <span id="budv">₹500</span>
+  </label>
+
+  <input
+    type="range"
+    id="bud"
+    min="0"
+    max="5000"
+    step="100"
+    value="500"
+  >
+
+  <label>What matters most?</label>
+
+  <div class="chips" id="prio" role="group" aria-label="Priority">
+    <button class="chip" data-p="money" aria-pressed="false">
+      Save money
+    </button>
+
+    <button class="chip" data-p="waste" aria-pressed="true">
+      Cut waste
+    </button>
+
+    <button class="chip" data-p="use" aria-pressed="false">
+      Most useful
+    </button>
+
+    <button class="chip" data-p="easy" aria-pressed="false">
+      Least effort
+    </button>
+  </div>
+
+  <button class="go" id="go">
+    Find its second life
+  </button>
+
+  <button class="ghost" id="demo">
+    Try it with a sample item
+  </button>
+
+  <div id="err"></div>
+
 </section>
-<section id="out" aria-live="polite"><div class="panel empty"><div><h2>Your item’s next chapter shows up here</h2><p>Every option gets scored on cost, effort, impact, difficulty and usefulness. Then you can change what matters and watch the ranking move.</p></div></div></section>
+
+
+<section id="out" aria-live="polite">
+
+  <div class="panel empty">
+
+    <div>
+      <h2>Your item’s next chapter shows up here</h2>
+
+      <p>
+        We'll dig through repair, reuse, resale, donation and recycling
+        ideas and figure out which ones make the most sense for your item.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
 </div>
 </div>
+
+
 <script>
+
 const $=s=>document.querySelector(s);
-const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const ICON={repair:"🛠️",reuse:"🔁",repurpose:"🎨",sell:"💸",donate:"🤝",recycle:"♻️"};
-const PRESET={money:{cost:3,effort:1,impact:1,difficulty:1,usefulness:1},waste:{cost:1,effort:1,impact:3,difficulty:1,usefulness:1},use:{cost:1,effort:1,impact:1,difficulty:1,usefulness:3},easy:{cost:1,effort:3,impact:1,difficulty:2,usefulness:1}};
-const LBL={cost:"Low cost",effort:"Low effort",impact:"Eco impact",difficulty:"Easy to do",usefulness:"Usefulness"};
-let S={blob:null,thumb:null,prio:"waste",skill:"Some",data:null,w:{...PRESET.waste}};
-const DEMO={item:{name:"Wobbly wooden chair",material:"Solid wood, loose joints",condition:"Structurally loose, cosmetically fine",summary:"A dining chair with loose leg joints. The wood itself is sound."},options:[
-{type:"repair",title:"Re-glue and clamp the joints",why:"Loose joints are the most common chair failure and the cheapest to fix.",scores:{cost:92,effort:70,impact:90,difficulty:72,usefulness:95},cost_inr:150,co2_kg:18,steps:["Tap the joints apart gently with a rubber mallet.","Scrape off old glue and dry-fit the pieces.","Apply wood glue, clamp with a rope or belt for 12 hours.","Sand lightly and re-polish."],where:"Wood glue is sold at any hardware shop."},
-{type:"repurpose",title:"Turn it into a plant stand",why:"Remove the back and use the seat as a sturdy display for pots.",scores:{cost:85,effort:60,impact:78,difficulty:65,usefulness:70},cost_inr:100,co2_kg:14,steps:["Saw off the backrest.","Sand and seal the seat.","Place pots on top."],where:"Basic hand saw and sandpaper."},
-{type:"donate",title:"Pass it to a local group",why:"Someone can fix and use it as it is.",scores:{cost:100,effort:75,impact:80,difficulty:90,usefulness:72},cost_inr:0,co2_kg:16,steps:["Post it on a local community group.","Offer free pickup."],where:"Community groups, Goonj collection drives."},
-{type:"sell",title:"Sell as a fixer-upper",why:"Wood furniture holds value even when damaged.",scores:{cost:80,effort:55,impact:75,difficulty:70,usefulness:60},cost_inr:0,co2_kg:15,steps:["Photograph it honestly.","List on OLX or a local marketplace."],where:"OLX, Facebook Marketplace."},
-{type:"recycle",title:"Send to a wood recycler",why:"Last resort; the material is recovered but the chair is lost.",scores:{cost:70,effort:50,impact:45,difficulty:80,usefulness:25},cost_inr:0,co2_kg:5,steps:["Find a carpenter or timber yard that takes offcuts."],where:"Local carpenters and timber yards."}]};
-function weights(){return S.w}
-function score(o){const w=S.w;let t=0,s=0;for(const k in w){t+=w[k]*(o.scores[k]??50);s+=w[k]}return Math.round(t/s)}
-function render(){
-const d=S.data;if(!d)return;
-const opts=d.options.map(o=>({...o,total:score(o)})).sort((a,b)=>b.total-a.total);
-const top=opts[0];
-const sliders=Object.keys(LBL).map(k=>`<div><label for="w_${k}" style="margin:0 0 4px;font-size:12px;font-weight:500;color:var(--mute)">${LBL[k]}</label><input type="range" id="w_${k}" data-k="${k}" min="0" max="5" step="1" value="${S.w[k]}"></div>`).join("");
-const inr=top.cost_inr?`about ₹${esc(top.cost_inr)}`:"no cost";
-$("#out").innerHTML=`
-<div class="panel"><div class="id">${S.thumb?`<img src="${S.thumb}" alt="Your item">`:""}<div><h3>${esc(d.item.name)}</h3><span>${esc(d.item.material)} · ${esc(d.item.condition)}</span></div></div>
-<p style="margin:0;color:var(--mute)">${esc(d.item.summary)}</p>
-<div class="tag"><div class="ring" style="--p:${top.total}"><b>${top.total}</b><span>match</span></div><small>Best second life</small><h2>${ICON[top.type]||"♻️"} ${esc(top.title)}</h2><p>${esc(top.why)}</p>
-<div class="stats"><span class="stat">${inr}</span><span class="stat">~${esc(top.co2_kg)} kg CO₂ kept out of the bin</span></div></div>
-<h3 style="font-size:20px">Change what matters</h3><p class="note" style="margin:4px 0 12px">Drag a slider up to make it count more. The ranking updates instantly.</p>
-<div class="mix">${sliders}</div>
-${opts.map((o,i)=>`<div class="opt ${i==0?"top open":""}"><button aria-expanded="${i==0}"><span class="ico">${ICON[o.type]||"♻️"}</span><span class="nm"><b>${esc(o.title)}</b><div>${esc(o.type)} · ${o.cost_inr?"₹"+esc(o.cost_inr):"free"}</div></span><span class="sc">${o.total}<small>/100</small></span></button><div class="bar"><i style="width:${o.total}%"></i></div>
-<div class="more"><p style="margin:12px 0 0">${esc(o.why)}</p><div class="m5">${Object.keys(LBL).map(k=>`<div>${LBL[k]} ${esc(o.scores[k]??"–")}<i style="--v:${Math.max(0,Math.min(100,o.scores[k]??0))}%"></i></div>`).join("")}</div>
-<b>How to do it</b><ol>${(o.steps||[]).map(s=>`<li>${esc(s)}</li>`).join("")}</ol><div style="color:var(--mute)">${esc(o.where||"")}</div></div></div>`).join("")}
-<p class="note">Scores and savings are AI estimates. Check safety, especially for electronics, batteries and anything that carries load.</p></div>`;
-document.querySelectorAll(".opt>button").forEach(b=>b.onclick=()=>{const p=b.parentElement;p.classList.toggle("open");b.setAttribute("aria-expanded",p.classList.contains("open"))});
-document.querySelectorAll("[data-k]").forEach(r=>r.oninput=()=>{S.w[r.dataset.k]=+r.value;const f=r.id;render();const n=document.getElementById(f);if(n)n.focus()});
+
+const esc=t=>String(t??"").replace(
+  /[&<>"]/g,
+  c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;"
+  }[c])
+);
+
+const ICON={
+  repair:"🛠️",
+  reuse:"🔁",
+  repurpose:"🎨",
+  sell:"💸",
+  donate:"🤝",
+  recycle:"♻️"
+};
+
+const PRESET={
+  money:{
+    cost:3,
+    effort:1,
+    impact:1,
+    difficulty:1,
+    usefulness:1
+  },
+
+  waste:{
+    cost:1,
+    effort:1,
+    impact:3,
+    difficulty:1,
+    usefulness:1
+  },
+
+  use:{
+    cost:1,
+    effort:1,
+    impact:1,
+    difficulty:1,
+    usefulness:3
+  },
+
+  easy:{
+    cost:1,
+    effort:3,
+    impact:1,
+    difficulty:2,
+    usefulness:1
+  }
+};
+
+const LBL={
+  cost:"Low cost",
+  effort:"Low effort",
+  impact:"Eco impact",
+  difficulty:"Easy to do",
+  usefulness:"Usefulness"
+};
+
+let S={
+  blob:null,
+  thumb:null,
+  prio:"waste",
+  skill:"Some",
+  data:null,
+  w:{...PRESET.waste}
+};
+
+
+const DEMO={
+
+item:{
+  name:"Wobbly wooden chair",
+  material:"Solid wood, loose joints",
+  condition:"Structurally loose, cosmetically fine",
+  summary:"A dining chair with loose leg joints. The wood itself is sound."
+},
+
+options:[
+
+{
+  type:"repair",
+  title:"Re-glue and clamp the joints",
+  why:"Loose joints are the most common chair failure and the cheapest to fix.",
+  scores:{
+    cost:92,
+    effort:70,
+    impact:90,
+    difficulty:72,
+    usefulness:95
+  },
+  cost_inr:150,
+  co2_kg:18,
+  steps:[
+    "Tap the joints apart gently with a rubber mallet.",
+    "Scrape off old glue and dry-fit the pieces.",
+    "Apply wood glue, clamp with a rope or belt for 12 hours.",
+    "Sand lightly and re-polish."
+  ],
+  where:"Wood glue is sold at any hardware shop."
+},
+
+{
+  type:"repurpose",
+  title:"Turn it into a plant stand",
+  why:"Remove the back and use the seat as a sturdy display for pots.",
+  scores:{
+    cost:85,
+    effort:60,
+    impact:78,
+    difficulty:65,
+    usefulness:70
+  },
+  cost_inr:100,
+  co2_kg:14,
+  steps:[
+    "Saw off the backrest.",
+    "Sand and seal the seat.",
+    "Place pots on top."
+  ],
+  where:"Basic hand saw and sandpaper."
+},
+
+{
+  type:"donate",
+  title:"Pass it to a local group",
+  why:"Someone can fix and use it as it is.",
+  scores:{
+    cost:100,
+    effort:75,
+    impact:80,
+    difficulty:90,
+    usefulness:72
+  },
+  cost_inr:0,
+  co2_kg:16,
+  steps:[
+    "Post it on a local community group.",
+    "Offer free pickup."
+  ],
+  where:"Community groups, Goonj collection drives."
+},
+
+{
+  type:"sell",
+  title:"Sell as a fixer-upper",
+  why:"Wood furniture holds value even when damaged.",
+  scores:{
+    cost:80,
+    effort:55,
+    impact:75,
+    difficulty:70,
+    usefulness:60
+  },
+  cost_inr:0,
+  co2_kg:15,
+  steps:[
+    "Photograph it honestly.",
+    "List on OLX or a local marketplace."
+  ],
+  where:"OLX, Facebook Marketplace."
+},
+
+{
+  type:"recycle",
+  title:"Send to a wood recycler",
+  why:"Last resort; the material is recovered but the chair is lost.",
+  scores:{
+    cost:70,
+    effort:50,
+    impact:45,
+    difficulty:80,
+    usefulness:25
+  },
+  cost_inr:0,
+  co2_kg:5,
+  steps:[
+    "Find a carpenter or timber yard that takes offcuts."
+  ],
+  where:"Local carpenters and timber yards."
 }
-function shrink(file){return new Promise(res=>{const im=new Image();im.onload=()=>{const m=900,r=Math.min(1,m/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=im.width*r;c.height=im.height*r;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(b=>res({blob:b,url:c.toDataURL("image/jpeg",.6)}),"image/jpeg",.8)};im.src=URL.createObjectURL(file)})}
-async function pick(f){if(!f)return;const r=await shrink(f);S.blob=r.blob;S.thumb=r.url;$("#drop").innerHTML=`<img src="${r.url}" alt="Preview of your item">`}
+
+]};
+
+
+function weights(){
+  return S.w;
+}
+
+
+function score(o){
+
+  const w=S.w;
+
+  let t=0;
+  let s=0;
+
+  for(const k in w){
+    t+=w[k]*(o.scores[k]??50);
+    s+=w[k];
+  }
+
+  return Math.round(t/s);
+}
+
+
+function render(){
+
+  const d=S.data;
+
+  if(!d)return;
+
+  const opts=d.options
+    .map(o=>({...o,total:score(o)}))
+    .sort((a,b)=>b.total-a.total);
+
+  const top=opts[0];
+
+  const sliders=Object.keys(LBL)
+    .map(k=>`
+      <div>
+        <label
+          for="w_${k}"
+          style="margin:0 0 4px;font-size:12px;font-weight:500;color:var(--mute)"
+        >
+          ${LBL[k]}
+        </label>
+
+        <input
+          type="range"
+          id="w_${k}"
+          data-k="${k}"
+          min="0"
+          max="5"
+          step="1"
+          value="${S.w[k]}"
+        >
+      </div>
+    `)
+    .join("");
+
+  const inr=top.cost_inr
+    ? `about ₹${esc(top.cost_inr)}`
+    : "no cost";
+
+  $("#out").innerHTML=`
+
+    <div class="panel">
+
+      <div class="id">
+
+        ${
+          S.thumb
+          ? `<img src="${S.thumb}" alt="Your item">`
+          : ""
+        }
+
+        <div>
+          <h3>${esc(d.item.name)}</h3>
+          <span>
+            ${esc(d.item.material)} · ${esc(d.item.condition)}
+          </span>
+        </div>
+
+      </div>
+
+
+      <p style="margin:0;color:var(--mute)">
+        ${esc(d.item.summary)}
+      </p>
+
+
+      <div class="tag">
+
+        <div
+          class="ring"
+          style="--p:${top.total}"
+        >
+          <b>${top.total}</b>
+          <span>match</span>
+        </div>
+
+        <small>Best second life</small>
+
+        <h2>
+          ${ICON[top.type]||"♻️"}
+          ${esc(top.title)}
+        </h2>
+
+        <p>${esc(top.why)}</p>
+
+        <div class="stats">
+          <span class="stat">${inr}</span>
+
+          <span class="stat">
+            ~${esc(top.co2_kg)}
+            kg CO₂ kept out of the bin
+          </span>
+        </div>
+
+      </div>
+
+
+      <h3 style="font-size:20px">
+        Change what matters
+      </h3>
+
+      <p
+        class="note"
+        style="margin:4px 0 12px"
+      >
+        Drag a slider up to make it count more.
+        The ranking updates instantly.
+      </p>
+
+
+      <div class="mix">
+        ${sliders}
+      </div>
+
+
+      ${opts.map((o,i)=>`
+
+        <div class="opt ${i==0?"top open":""}">
+
+          <button aria-expanded="${i==0}">
+
+            <span class="ico">
+              ${ICON[o.type]||"♻️"}
+            </span>
+
+            <span class="nm">
+
+              <b>${esc(o.title)}</b>
+
+              <div>
+                ${esc(o.type)}
+                ·
+                ${o.cost_inr?"₹"+esc(o.cost_inr):"free"}
+              </div>
+
+            </span>
+
+            <span class="sc">
+              ${o.total}
+              <small>/100</small>
+            </span>
+
+          </button>
+
+
+          <div class="bar">
+            <i style="width:${o.total}%"></i>
+          </div>
+
+
+          <div class="more">
+
+            <p style="margin:12px 0 0">
+              ${esc(o.why)}
+            </p>
+
+
+            <div class="m5">
+
+              ${
+                Object.keys(LBL)
+                .map(k=>`
+                  <div>
+                    ${LBL[k]}
+                    ${esc(o.scores[k]??"–")}
+
+                    <i
+                      style="--v:${Math.max(
+                        0,
+                        Math.min(100,o.scores[k]??0)
+                      )}%"
+                    ></i>
+                  </div>
+                `)
+                .join("")
+              }
+
+            </div>
+
+
+            <b>How to do it</b>
+
+            <ol>
+              ${
+                (o.steps||[])
+                .map(s=>`<li>${esc(s)}</li>`)
+                .join("")
+              }
+            </ol>
+
+
+            <div style="color:var(--mute)">
+              ${esc(o.where||"")}
+            </div>
+
+          </div>
+
+        </div>
+
+      `).join("")}
+
+
+      <p class="note">
+        Scores and savings are AI estimates.
+        Check safety, especially for electronics,
+        batteries and anything that carries load.
+      </p>
+
+    </div>
+  `;
+
+
+  document
+    .querySelectorAll(".opt>button")
+    .forEach(b=>{
+
+      b.onclick=()=>{
+
+        const p=b.parentElement;
+
+        p.classList.toggle("open");
+
+        b.setAttribute(
+          "aria-expanded",
+          p.classList.contains("open")
+        );
+
+      };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-k]")
+    .forEach(r=>{
+
+      r.oninput=()=>{
+
+        S.w[r.dataset.k]=+r.value;
+
+        const f=r.id;
+
+        render();
+
+        const n=document.getElementById(f);
+
+        if(n)n.focus();
+
+      };
+
+    });
+
+}
+
+
+function shrink(file){
+
+  return new Promise(res=>{
+
+    const im=new Image();
+
+    im.onload=()=>{
+
+      const m=900;
+
+      const r=Math.min(
+        1,
+        m/Math.max(im.width,im.height)
+      );
+
+      const c=document.createElement("canvas");
+
+      c.width=im.width*r;
+      c.height=im.height*r;
+
+      c
+        .getContext("2d")
+        .drawImage(
+          im,
+          0,
+          0,
+          c.width,
+          c.height
+        );
+
+      c.toBlob(
+        b=>res({
+          blob:b,
+          url:c.toDataURL("image/jpeg",.6)
+        }),
+        "image/jpeg",
+        .8
+      );
+
+    };
+
+    im.src=URL.createObjectURL(file);
+
+  });
+
+}
+
+
+async function pick(f){
+
+  if(!f)return;
+
+  const r=await shrink(f);
+
+  S.blob=r.blob;
+  S.thumb=r.url;
+
+  $("#drop").innerHTML=
+    `<img src="${r.url}" alt="Preview of your item">`;
+
+}
+
+
 $("#drop").onclick=()=>$("#file").click();
-$("#drop").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#file").click()}};
+
+
+$("#drop").onkeydown=e=>{
+
+  if(e.key==="Enter"||e.key===" "){
+
+    e.preventDefault();
+
+    $("#file").click();
+
+  }
+
+};
+
+
 $("#file").onchange=e=>pick(e.target.files[0]);
-$("#drop").ondragover=e=>{e.preventDefault();$("#drop").classList.add("on")};
-$("#drop").ondragleave=()=>$("#drop").classList.remove("on");
-$("#drop").ondrop=e=>{e.preventDefault();$("#drop").classList.remove("on");pick(e.dataTransfer.files[0])};
-$("#bud").oninput=e=>$("#budv").textContent="₹"+(+e.target.value).toLocaleString("en-IN");
-function group(sel,fn){document.querySelectorAll(sel+" .chip").forEach(c=>c.onclick=()=>{document.querySelectorAll(sel+" .chip").forEach(x=>x.setAttribute("aria-pressed","false"));c.setAttribute("aria-pressed","true");fn(c)})}
-group("#skill",c=>S.skill=c.textContent);
-group("#prio",c=>{S.prio=c.dataset.p;S.w={...PRESET[S.prio]};render()});
-$("#theme").onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).colorScheme.includes("dark")||r.dataset.theme==="dark";r.dataset.theme=d?"light":"dark"};
-$("#demo").onclick=()=>{S.data=DEMO;S.thumb=null;S.w={...PRESET[S.prio]};$("#err").innerHTML="";render();$("#out").scrollIntoView({behavior:"smooth"})};
+
+
+$("#drop").ondragover=e=>{
+
+  e.preventDefault();
+
+  $("#drop").classList.add("on");
+
+};
+
+
+$("#drop").ondragleave=()=>
+  $("#drop").classList.remove("on");
+
+
+$("#drop").ondrop=e=>{
+
+  e.preventDefault();
+
+  $("#drop").classList.remove("on");
+
+  pick(e.dataTransfer.files[0]);
+
+};
+
+
+$("#bud").oninput=e=>
+  $("#budv").textContent=
+    "₹"+(+e.target.value).toLocaleString("en-IN");
+
+
+function group(sel,fn){
+
+  document
+    .querySelectorAll(sel+" .chip")
+    .forEach(c=>{
+
+      c.onclick=()=>{
+
+        document
+          .querySelectorAll(sel+" .chip")
+          .forEach(x=>
+            x.setAttribute(
+              "aria-pressed",
+              "false"
+            )
+          );
+
+        c.setAttribute(
+          "aria-pressed",
+          "true"
+        );
+
+        fn(c);
+
+      };
+
+    });
+
+}
+
+
+group("#skill",c=>
+  S.skill=c.textContent
+);
+
+
+group("#prio",c=>{
+
+  S.prio=c.dataset.p;
+
+  S.w={...PRESET[S.prio]};
+
+  render();
+
+});
+
+
+$("#theme").onclick=()=>{
+
+  const r=document.documentElement;
+
+  const d=
+    getComputedStyle(r)
+      .colorScheme
+      .includes("dark")
+    ||
+    r.dataset.theme==="dark";
+
+  r.dataset.theme=d?"light":"dark";
+
+};
+
+
+$("#demo").onclick=()=>{
+
+  S.data=DEMO;
+
+  S.thumb=null;
+
+  S.w={...PRESET[S.prio]};
+
+  $("#err").innerHTML="";
+
+  render();
+
+  $("#out").scrollIntoView({
+    behavior:"smooth"
+  });
+
+};
+
+
 $("#go").onclick=async()=>{
-const err=$("#err");err.innerHTML="";
-if(!S.blob&&!$("#name").value.trim()){err.innerHTML='<div class="err">Add a photo or type what the item is first.</div>';return}
-const btn=$("#go");btn.disabled=true;btn.innerHTML='<span class="spin"></span>Studying your item';
-try{
-const r=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({image:S.thumb,name:$("#name").value,why:$("#why").value,skill:S.skill,budget:$("#bud").value})});
-if(!r.ok){throw {code:r.status===429?"rate_limited":r.status===503?"unavailable":"bad"}}
-const out=await r.json();
-if(!out||!Array.isArray(out.options)||!out.options.length)throw {code:"bad"};
-S.data=out;S.w={...PRESET[S.prio]};render();$("#out").scrollIntoView({behavior:"smooth"});
-}catch(e){
-const m=e&&e.code==="unavailable"||e&&e.code==="not_granted"?"The AI service isn’t configured. Add your free Gemini key to the .env file and restart the server, or try the sample item.":e&&e.code==="rate_limited"?"Too many requests. Wait a minute, then try again.":"The AI reply couldn’t be read. Try again, or add a clearer photo.";
-err.innerHTML=`<div class="err">${m}</div>`}
-btn.disabled=false;btn.textContent="Find its second life"};
+
+  const err=$("#err");
+
+  err.innerHTML="";
+
+  if(
+    !S.blob &&
+    !$("#name").value.trim()
+  ){
+
+    err.innerHTML=
+      '<div class="err">Add a photo or type what the item is first.</div>';
+
+    return;
+
+  }
+
+  const btn=$("#go");
+
+  btn.disabled=true;
+
+  btn.innerHTML=
+    '<span class="spin"></span>Studying your item';
+
+  try{
+
+    const r=await fetch(
+      "/api/analyze",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          image:S.thumb,
+          name:$("#name").value,
+          why:$("#why").value,
+          skill:S.skill,
+          budget:$("#bud").value
+        })
+      }
+    );
+
+    const out=await r.json().catch(
+      ()=>({
+        error:"Server returned an invalid response."
+      })
+    );
+
+    if(
+      !r.ok ||
+      out.error
+    )
+      throw {
+        code:
+          r.status===429
+          ?"rate_limited"
+          :r.status===503
+          ?"unavailable"
+          :"bad",
+        detail:out.error
+      };
+
+    if(
+      !out ||
+      !Array.isArray(out.options) ||
+      !out.options.length
+    )
+      throw {
+        code:"bad",
+        detail:"The AI returned an incomplete result."
+      };
+
+    S.data=out;
+
+    S.w={...PRESET[S.prio]};
+
+    render();
+
+    $("#out").scrollIntoView({
+      behavior:"smooth"
+    });
+
+  }catch(e){
+
+    const m=
+      e&&e.code==="unavailable" ||
+      e&&e.code==="not_granted"
+
+      ?
+
+      "The AI service isn’t configured. Add your free Gemini key to the .env file and restart the server, or try the sample item."
+
+      :
+
+      e&&e.code==="rate_limited"
+
+      ?
+
+      "Too many requests. Wait a minute, then try again."
+
+      :
+
+      `The AI analysis failed${
+        e&&e.detail
+        ?": "+esc(e.detail)
+        :" . Try again, or add a clearer photo."
+      }`;
+
+    err.innerHTML=
+      `<div class="err">
+        ${m}
+        ${
+          e&&e.detail
+          ?`<br><small>${esc(
+              String(e.detail).slice(0,220)
+            )}</small>`
+          :""
+        }
+      </div>`;
+
+  }
+
+  btn.disabled=false;
+
+  btn.textContent="Find its second life";
+
+};
+
 </script>
+
 </body>
 </html>
