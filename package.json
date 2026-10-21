@@ -1,0 +1,1 @@
+{"name":"second-life-finder","version":"1.0.0","description":"AI that finds the best second life for old or damaged items","main":"server.js","scripts":{"start":"node server.js"},"engines":{"node":">=18"},"license":"MIT"}
